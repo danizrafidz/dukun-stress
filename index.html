@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dukun Stress</title>
+</head>
+
+<body>
+    <div>
+        <p id="txt-form">Selamat datang di website dukun stress!</p>
+        <div id="jwb-form">
+            <input type="radio" id="tidak-pernah" name="opsi" value="Tidak pernah"></input>
+            <label for="tidak-pernah">Tidak pernah</label><br>
+
+            <input type="radio" id="hampir-tidak-pernah" name="opsi" value="Hampir tidak pernah"></input>
+            <label for="hampir-tidak-pernah">Hampir tidak pernah</label><br>
+
+            <input type="radio" id="kadang-kadang" name="opsi" value="Kadang kadang"></input>
+            <label for="kadang-kadang">Kadang kadang</label><br>
+
+            <input type="radio" id="agak-sering" name="opsi" value="Agak sering"></input>
+            <label for="agak-sering">Agak sering</label><br>
+
+            <input type="radio" id="sangat-sering" name="opsi" value="Sangat sering"></input>
+            <label for="sangat-sering">Sangat sering</label><br>
+        </div><br>
+        <button id="btn-prev" onclick="prevForm()">Prev</button>
+        <button id="btn-next" onclick="nextForm()">Next</button>
+    </div>
+    <script>
+        let textForm = document.getElementById("txt-form")
+        let buttonNext = document.getElementById("btn-next")
+
+        let formPage = 0
+
+        let pertanyaanForms = [
+            '1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?',
+            '2. Seberapa sering Anda merasa bahwa Anda tidak dapat mengontrol hal-hal penting dalam hidup Anda?',
+            '3. Seberapa sering Anda merasa grogi dan tertekan?',
+            '4. Seberapa sering Anda merasa yakin dengan kemampuan Anda untuk menghadapi masalah personal Anda?',
+            '5. Seberapa sering Anda merasa hal-hal terjadi sesuai rencana Anda?',
+            '6. Seberapa sering Anda merasa bahwa Anda tidak dapat mengatasi hal-hal yang harus Anda lakukan?',
+            '7. Seberapa sering Anda dapat mengatasi gangguan yang terjadi dalam hidup Anda ?',
+            '8. Seberapa sering Anda merasa bahwa Anda dapat mengontrol segala hal dengan sangat baik?',
+            '9. Seberapa sering Anda merasa marah karena hal-hal yang terjadi di luar kontrol Anda?',
+            '10.Seberapa sering Anda merasa berada dalam kesultan yang berat sehingga Anda tidak dapat mengatasinya?'
+        ]
+
+        let jawabanForms = [
+            'Tidak pernah',
+            'Hampir tidak pernah',
+            'Kadang kadang',
+            'Agak sering',
+            'Sangat sering'
+        ]
+
+        function prevForm() {
+            if (formPage !== 0) {
+                formPage--
+                textForm.innerText = pertanyaanForms[formPage]
+            }
+        }
+
+        function nextForm() {
+            if (formPage !== 9) {
+                formPage++
+                textForm.innerText = pertanyaanForms[formPage]
+            }
+        }
+
+        let testCreate = document.createElement
+    </script>
+</body>
+
+</html>
