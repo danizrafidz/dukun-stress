@@ -1,25 +1,60 @@
-let s = 0
-let storage = []
-// TEST: [1, 2, 1, 3, 4, 0, 2, 1, 2, 3]
-let halaman = document.getElementById("hal")
+const textPertanyaan = document.getElementById("txt-pertanyaan")
+const form = document.getElementById("form-rad")
+const rad = document.getElementsByName("rad")
+const buttons = document.getElementsByClassName("buttons")[0]
+const submitOutput = document.getElementById("submit-output")
 
-let form = document.getElementById("form-rad")
-let rad = document.getElementsByName("rad")
-let submitOutput = document.getElementById("submit-output")
+// READ hasil dari localStorage
+const namaUser = localStorage.getItem('namaUser');
+    
+// UPDATE hasil di <p> element dengan id 'nama-user'
+document.getElementById('nama-user').innerText = `Halo ${namaUser}!`|| 'Gagal';
 
-let pertanyaanForms = [
-    '1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?',
-    '2. Seberapa sering Anda merasa bahwa Anda tidak dapat mengontrol hal-hal penting dalam hidup Anda?',
-    '3. Seberapa sering Anda merasa grogi dan tertekan?',
-    '4. Seberapa sering Anda merasa yakin dengan kemampuan Anda untuk menghadapi masalah personal Anda?',
-    '5. Seberapa sering Anda merasa hal-hal terjadi sesuai rencana Anda?',
-    '6. Seberapa sering Anda merasa bahwa Anda tidak dapat mengatasi hal-hal yang harus Anda lakukan?',
-    '7. Seberapa sering Anda dapat mengatasi gangguan yang terjadi dalam hidup Anda ?',
-    '8. Seberapa sering Anda merasa bahwa Anda dapat mengontrol segala hal dengan sangat baik?',
-    '9. Seberapa sering Anda merasa marah karena hal-hal yang terjadi di luar kontrol Anda?',
-    '10.Seberapa sering Anda merasa berada dalam kesultan yang berat sehingga Anda tidak dapat mengatasinya?'
+let s = 0 // index untuk STORAGE
+let storage = [
+    {
+        pertanyaan: '1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?',
+        score: null
+    },
+    {
+        pertanyaan: '2. Seberapa sering Anda merasa bahwa Anda tidak dapat mengontrol hal-hal penting dalam hidup Anda?',
+        score: null
+    },
+    {
+        pertanyaan: '3. Seberapa sering Anda merasa grogi dan tertekan?',
+        score: null
+    },
+    {
+        pertanyaan: '4. Seberapa sering Anda merasa yakin dengan kemampuan Anda untuk menghadapi masalah personal Anda?',
+        score: null
+    },
+    {
+        pertanyaan: '5. Seberapa sering Anda merasa hal-hal terjadi sesuai rencana Anda?',
+        score: null
+    },
+    {
+        pertanyaan: '6. Seberapa sering Anda merasa bahwa Anda tidak dapat mengatasi hal-hal yang harus Anda lakukan?',
+        score: null
+    },
+    {
+        pertanyaan: '7. Seberapa sering Anda dapat mengatasi gangguan yang terjadi dalam hidup Anda ?',
+        score: null
+    },
+    {
+        pertanyaan: '8. Seberapa sering Anda merasa bahwa Anda dapat mengontrol segala hal dengan sangat baik?',
+        score: null
+    },
+    {
+        pertanyaan: '9. Seberapa sering Anda merasa marah karena hal-hal yang terjadi di luar kontrol Anda?',
+        score: null
+    },
+    {
+        pertanyaan: '10.Seberapa sering Anda merasa berada dalam kesultan yang berat sehingga Anda tidak dapat mengatasinya?',
+        score: null
+    },
 ]
 
+// READ check radio button mana yang dipilih dan mengembalikan berupa value
 function getCheckedValue() {
     for (let i = 0; i < rad.length; i++) {
         if (rad[i].checked === true) {
@@ -29,9 +64,10 @@ function getCheckedValue() {
     return null
 }
 
+// SAVE ke dalam storage berupa array of object
 function saveToStorage() {
     let checkedValue = getCheckedValue();
-    storage[s] = checkedValue
+    storage[s].score = checkedValue
 }
 
 function submitButton() {
@@ -39,12 +75,17 @@ function submitButton() {
 
     let scoreTotal = 0
     for (let i = 0; i < storage.length; i++) {
-        let perNum = storage[i];
-        scoreTotal += perNum
-
+        let perNum = storage[i].score
+        
         if (perNum === null) {
             return submitOutput.innerText = 'Isi semua pertanyaan!'
         }
+
+        if (i == 3 || i == 4 || i == 6 || i == 7) {
+            perNum = 4 - perNum
+        }
+        
+        scoreTotal += perNum
     }
 
     let textResult = ''
@@ -60,50 +101,16 @@ function submitButton() {
         textResult = 'Anda normal'
     }
 
-    submitOutput.innerText = textResult
+    // // Simpan hasil di localStorage
+    localStorage.setItem('stressResult', textResult);
 
-    console.log('Total score stress anda: ' + scoreTotal);
-}
-
-function prevButton() {
-    if (s <= 0) {
-        return
-    }
-
-    if (submitOutput.innerText !== '') {
-        submitOutput.innerText = ''
-    }
-
-    let prevBtn = document.getElementById("btn-prev")
-
-    saveToStorage()
-    console.log(storage);
-    s--
-    halaman.innerText = pertanyaanForms[s]
-
-    // JIKA kembali ke pertanyaan 9
-    if (s === 8) {
-        // DELETE tombol submit
-        let submitBtn = document.getElementById('btn-submit')
-        submitBtn.remove()
-
-        // CREATE tombol next
-        let nextBtn = document.createElement('button')
-        nextBtn.setAttribute('type', 'button')
-        nextBtn.setAttribute('onclick', 'nextButton()')
-        nextBtn.setAttribute('id', 'btn-next')
-        nextBtn.innerText = 'next'
-        // PREVIEW created html: <button type="button" onclick="nextButton()" id="btn-next">next</button>
-
-        form.append(nextBtn)
-    }
-
-    readCheckedRadio()
+    // Redirect ke submit.html
+    window.location.href = 'submit.html';
 }
 
 // READ radio mana yang ter-CHECKED pada pertanyaan sebelum, dilihat dari index storage []
 function readCheckedRadio() {
-    switch (storage[s]) {
+    switch (storage[s].score) {
         case 0:
             rad[0].checked = true;
             break;
@@ -125,6 +132,43 @@ function readCheckedRadio() {
     }
 }
 
+function prevButton() {
+    if (s <= 0) {
+        return
+    }
+
+    if (submitOutput.innerText !== '') {
+        submitOutput.innerText = ''
+    }
+
+    let prevBtn = document.getElementById("btn-prev")
+
+    saveToStorage()
+    console.log(storage);
+    s--
+    textPertanyaan.innerText = storage[s].pertanyaan
+
+    // JIKA kembali ke pertanyaan 9
+    if (s === 8) {
+        // DELETE tombol submit
+        let submitBtn = document.getElementById('btn-submit')
+        submitBtn.remove()
+
+        // CREATE tombol next
+        let nextBtn = document.createElement('button')
+        nextBtn.setAttribute('type', 'button')
+        nextBtn.setAttribute('class', 'func-btn')
+        nextBtn.setAttribute('onclick', 'nextButton()')
+        nextBtn.setAttribute('id', 'btn-next')
+        nextBtn.innerText = 'next'
+        // PREVIEW created html: <button type="button" onclick="nextButton()" id="btn-next">next</button>
+
+        buttons.append(nextBtn)
+    }
+
+    readCheckedRadio()
+}
+
 function nextButton() {
     if (s >= 9) {
         return
@@ -133,7 +177,7 @@ function nextButton() {
     saveToStorage()
     console.log(storage);
     s++
-    halaman.innerText = pertanyaanForms[s]
+    textPertanyaan.innerText = storage[s].pertanyaan
 
     // JIKA menuju ke pertanyaan 10
     if (s === 9) {
@@ -144,12 +188,13 @@ function nextButton() {
         // CREATE tombol submit
         let submitBtn = document.createElement('button')
         submitBtn.setAttribute('type', 'button')
+        submitBtn.setAttribute('class', 'func-btn')
         submitBtn.setAttribute('onclick', 'submitButton()')
         submitBtn.setAttribute('id', 'btn-submit')
         submitBtn.innerText = 'submit'
         // PREVIEW created html: <button type="button" onclick="submitButton()" id="btn-submit">submit</button>
 
-        form.append(submitBtn)
+        buttons.append(submitBtn)
     }
 
     readCheckedRadio()

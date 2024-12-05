@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EE Stress Tracker Submit</title>
+</head>
+
+<body>
+    <div>
+        <h1>EE Stress Tracker Result:</h1>
+        <p id="submit-result"></p>
+    </div>
+
+    <script>
+        // Ambil hasil dari localStorage
+        const stressResult = localStorage.getItem('stressResult');
+        const namaUser = localStorage.getItem('namaUser');
+
+        // Tampilkan hasil di <p> element
+        document.getElementById('submit-result').innerText = `Halo ${namaUser}! ${stressResult}` || 'Gagal';
+    </script>
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>

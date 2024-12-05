@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EE Stress Tracker Input Nama</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="super-center-grid">
+      <img src="img/hacktiv8.webp" alt="" />
+      <h1>Welcome !</h1>
+      <div class="ini">
+        <form class="anjing">
+          <input
+            id="styled-input"
+            type="text"
+            placeholder="Input your name..."
+          />
+          <input id="login-btn" type="button" value="Masuk" onclick="saveName()"/>
+          <a href="soal.html"></a>
+        </form>
+      </div>
+    </div>
+    <script>
+      function saveName() {
+        let styledInput = document.getElementById("styled-input")
+        
+        localStorage.setItem('namaUser', styledInput.value);
+        window.location.href = 'form.html';
+      }
+    </script>
+  </body>
+</html>
