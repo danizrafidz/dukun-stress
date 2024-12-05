@@ -2,197 +2,35 @@
 <html>
 
 <head>
-    <title>Dukun Stress</title>
+    <title>test1</title>
 </head>
 
 <body>
-    <div>
-        <p id="txt-form">1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?</p>
-        <form id="jwb-form">
-            <input type="radio" id="tidak-pernah" name="opsi" value=0></input>
-            <label for="tidak-pernah">Tidak pernah</label><br>
+    <form id="form-rad">
+        <p id="hal">1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?</p>
 
-            <input type="radio" id="hampir-tidak-pernah" name="opsi" value=1></input>
-            <label for="hampir-tidak-pernah">Hampir tidak pernah</label><br>
+        <input type="radio" id="rad1" name="rad" value="0">
+        <label for="rad1">Tidak pernah</label><br>
 
-            <input type="radio" id="kadang-kadang" name="opsi" value=2></input>
-            <label for="kadang-kadang">Kadang kadang</label><br>
+        <input type="radio" id="rad2" name="rad" value="1">
+        <label for="rad2">Hampir tidak pernah</label><br>
 
-            <input type="radio" id="agak-sering" name="opsi" value=3></input>
-            <label for="agak-sering">Agak sering</label><br>
+        <input type="radio" id="rad3" name="rad" value="2">
+        <label for="rad3">Kadang kadang</label><br>
 
-            <input type="radio" id="sangat-sering" name="opsi" value=4></input>
-            <label for="sangat-sering">Sangat sering</label><br>
-        </form><br>
-        <p id="test">.</p>
-        <button id="btn-prev" onclick="prevForm()">Prev</button>
-        <button id="btn-next" onclick="nextForm()">Next</button>
-        <button id="btn-test" onclick="testForm()">Test</button>
-    </div>
-    <script>
-        let textForm = document.getElementById("txt-form")
-        let jawabForm = document.getElementById("jwb-form")
-        let buttonNext = document.getElementById("btn-next")
+        <input type="radio" id="rad4" name="rad" value="3">
+        <label for="rad4">Agak sering</label><br>
 
-        let formPage = 0
+        <input type="radio" id="rad5" name="rad" value="4">
+        <label for="rad5">Sangat sering</label><br>
 
-        let pertanyaanForms = [
-            '1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak Anda harapkan?',
-            '2. Seberapa sering Anda merasa bahwa Anda tidak dapat mengontrol hal-hal penting dalam hidup Anda?',
-            '3. Seberapa sering Anda merasa grogi dan tertekan?',
-            '4. Seberapa sering Anda merasa yakin dengan kemampuan Anda untuk menghadapi masalah personal Anda?',
-            '5. Seberapa sering Anda merasa hal-hal terjadi sesuai rencana Anda?',
-            '6. Seberapa sering Anda merasa bahwa Anda tidak dapat mengatasi hal-hal yang harus Anda lakukan?',
-            '7. Seberapa sering Anda dapat mengatasi gangguan yang terjadi dalam hidup Anda ?',
-            '8. Seberapa sering Anda merasa bahwa Anda dapat mengontrol segala hal dengan sangat baik?',
-            '9. Seberapa sering Anda merasa marah karena hal-hal yang terjadi di luar kontrol Anda?',
-            '10.Seberapa sering Anda merasa berada dalam kesultan yang berat sehingga Anda tidak dapat mengatasinya?'
-        ]
-
-        let jawabanForms = [
-            {
-                opsi: 'Tidak pernah',
-                score: 0
-            },
-            {
-                opsi: 'Hampir tidak pernah',
-                score: 1
-            },
-            {
-                opsi: 'Kadang kadang',
-                score: 2
-            },
-            {
-                opsi: 'Agak sering',
-                score: 3
-            },
-            {
-                opsi: 'Sangat sering',
-                score: 4
-            },
-        ]
-        let userAnswers = ['', '', '', '', '', '', '', '', '', '']
-
-
-        let test = document.getElementById("test")
-        let opsi = document.getElementsByName("opsi");
-
-        function prevForm() {
-            if (formPage !== 0) {
-
-                for (const perOpsi of opsi) {
-
-                    if (perOpsi.checked === true) {
-                        userAnswers[formPage] = perOpsi.getAttribute("value")
-                        console.log(userAnswers);
-                    }
-                }
-
-                formPage--
-                textForm.innerText = pertanyaanForms[formPage]
-                test.innerText = `formPage: ${formPage}`
-
-                jawabForm.reset()
-                if (userAnswers[formPage] !== '') {
-
-                    if (userAnswers[formPage] == 0) {
-                        opsi[0].setAttribute("checked", "checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 1) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].setAttribute("checked", "checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 2) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].setAttribute("checked", "checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 3) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].setAttribute("checked", "checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 4) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].setAttribute("checked", "checked")
-                    }
-                }
-            }
-        }
-
-        function nextForm() {
-            if (formPage !== 9) {
-                for (const perOpsi of opsi) {
-                    // perOpsi = <input type="radio" id="tidak-pernah" name="opsi" value=0></input>
-
-                    // Save data score
-                    if (perOpsi.checked === true) {
-                        userAnswers[formPage] = perOpsi.getAttribute("value")
-                        console.log(userAnswers);
-                        // test.innerText = 'score sebelum: ' + perOpsi.getAttribute("value")
-                    }
-                }
-
-                formPage++
-                textForm.innerText = pertanyaanForms[formPage] // Ganti soal
-                test.innerText = `formPage: ${formPage}`
-
-                jawabForm.reset()
-                if (userAnswers[formPage] !== '') {
-                    console.log('terbaca');
-
-                    if (userAnswers[formPage] == 0) {
-                        opsi[0].setAttribute("checked", "checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 1) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].setAttribute("checked", "checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 2) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].setAttribute("checked", "checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 3) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].setAttribute("checked", "checked")
-                        opsi[4].removeAttribute("checked")
-                    } else if (userAnswers[formPage] == 4) {
-                        opsi[0].removeAttribute("checked")
-                        opsi[1].removeAttribute("checked")
-                        opsi[2].removeAttribute("checked")
-                        opsi[3].removeAttribute("checked")
-                        opsi[4].setAttribute("checked", "checked")
-                    }
-                }
-            }
-        }
-
-        function testForm() {
-            jawabForm.reset()
-            opsi[0].setAttribute("checked", "checked")
-        }
-
-        let testCreate = document.createElement
-    </script>
+        <p id="submit-output"></p>
+        <br>
+        <button type="button" onclick="prevButton()" id="btn-prev">prev</button>
+        <button type="button" onclick="nextButton()" id="btn-next">next</button>
+        <!-- <button type="button" onclick="submitButton()" id="btn-submit">submit</button> -->
+    </form>
+    <script src="script.js"></script>
 </body>
 
 </html>
