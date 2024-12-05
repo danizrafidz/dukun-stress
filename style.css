@@ -1,14 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 body {
-    background-color: #F16634;
-    font-family: "Poppins", serif;
+  background-color: #f16634;
+  font-family: "Poppins", serif;
 }
 
 img {
   width: 200px;
 }
 
+.option {
+  display: flex; /* Gunakan Flexbox untuk horizontal */
+  align-items: center; /* Sejajarkan radio button dan teks */
+  background-color: lightblue; /* Warna default */
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: auto;
+  border: #333;
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  border-radius: 25px;
+  border: double white;
+  cursor: pointer;
+  color: white;
+  height: 5pc;
+  gap: 10px; /* Jarak antara lingkaran dan teks */
+  text-align: left;
+}
+.option:hover { background-color: chartreuse;
+}
+.option input[type="radio"] {
+  display: none;
+}
+
+/* Custom radio button */
+.option label {
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px; /* Untuk ruang lingkaran */
+}
+
+/* Tambahkan lingkaran di sebelah kiri teks */
+.option label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Ukuran lingkaran */
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* Warna lingkaran saat dipilih */
+.option input[type="radio"]:checked + label::before {
+  background-color: white;
+}
 .super-center-grid {
   display: flex;
   place-content: center;
@@ -23,27 +76,24 @@ img {
   font-size: 16px;
   border: 2px solid white;
   border-radius: 20px;
-  background-color:white;
+  background-color: white;
   opacity: 40%;
   text-align: center;
   color: #333;
   font-family: "Poppins", serif;
-
 }
-
 
 .login-btn {
   margin-top: 3px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #007BFF;
+  background-color: #007bff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: "Poppins", serif;
-  
 }
 
 .login-btn:hover {
@@ -57,28 +107,24 @@ img {
   align-content: center;
   border: double white;
 }
-.anjing{
+.anjing {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.inputan {
-  
+.buttons {
+  display: flex;
 }
 
 .question {
   text-align: center;
   align-content: center;
   align-items: center;
-  padding: 50px
+  padding: 50px;
 }
 
 .jawaban {
-  background-color: rgb(61, 177, 139);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: #333;
   text-align: center;
   padding: 2px;
@@ -91,5 +137,4 @@ img {
 }
 
 .jawaban:hover {
-  background-color: chartreuse;
 }
