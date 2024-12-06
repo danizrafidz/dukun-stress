@@ -140,9 +140,6 @@ img {
   height: 5pc;
 }
 
-.jawaban:hover {
-}
-
 input:checked {
   outline: 1px solid red !important
 }
