@@ -76,6 +76,34 @@ let storage = [
     },
 ]
 
+let feedbacks = {
+    'normal': [
+        'Selamat! Anda berada dalam kondisi mental yang normal. Tetap jaga kesehatan mental dengan rutin berolahraga, makan makanan bergizi, dan tidur cukup. Jangan lupa untuk meluangkan waktu untuk bersantai.',
+        'Anda berada dalam kondisi baik. Pastikan untuk tetap menjaga keseimbangan antara pekerjaan dan kehidupan pribadi agar kondisi ini dapat dipertahankan.',
+        'Kondisi mental Anda stabil. Terus lakukan aktivitas yang membuat Anda bahagia dan menjaga suasana hati tetap positif.'
+    ],
+    'stress ringan': [
+        'Anda mengalami stres ringan. Cobalah teknik relaksasi seperti meditasi atau pernapasan dalam untuk membantu mengurangi tekanan yang dirasakan.',
+        'Walaupun stres Anda masih tergolong ringan, penting untuk mengidentifikasi penyebabnya. Usahakan untuk berbicara dengan orang terdekat atau teman terpercaya untuk berbagi perasaan Anda.',
+        'Luangkan waktu untuk diri sendiri. Aktivitas seperti mendengarkan musik, membaca buku, atau berjalan santai dapat membantu mengurangi stres ringan ini.'
+    ],
+    'stress sedang': [
+        'Anda menunjukkan tanda-tanda stres sedang. Pertimbangkan untuk mengurangi beban kerja atau mengambil waktu untuk liburan singkat agar dapat merasa lebih rileks.',
+        'Stres Anda membutuhkan perhatian lebih. Cobalah untuk membuat jadwal harian yang lebih teratur dan prioritaskan kegiatan yang mendukung kesejahteraan mental Anda.',
+        'Diskusikan situasi Anda dengan teman, keluarga, atau konselor profesional jika memungkinkan. Hal ini dapat membantu meringankan beban pikiran yang sedang Anda rasakan.'
+    ],
+    'stress cukup berat': [
+        'Anda mengalami stres yang cukup berat. Sangat disarankan untuk mulai mempraktikkan gaya hidup sehat seperti tidur yang cukup, menghindari kafein berlebihan, dan berolahraga ringan.',
+        'Pertimbangkan untuk mencari bantuan profesional, seperti konselor atau psikolog, untuk mengatasi tekanan yang sedang Anda alami.',
+        'Luangkan waktu untuk benar-benar beristirahat dan menjauh dari penyebab stres. Fokus pada diri Anda sendiri untuk sementara waktu agar pikiran lebih jernih.'
+    ],
+    'stress berat': [
+        'Anda berada dalam kondisi stres berat. Jangan ragu untuk segera menghubungi tenaga profesional, seperti psikolog atau psikiater, untuk mendapatkan dukungan dan penanganan yang tepat.',
+        'Cobalah untuk berbicara dengan seseorang yang Anda percayai. Dukungan dari keluarga atau teman dekat sangat penting dalam situasi seperti ini.',
+        'Jangan terlalu keras pada diri sendiri. Beri tubuh dan pikiran Anda waktu untuk pulih. Jika memungkinkan, ambil cuti atau jeda dari rutinitas sehari-hari yang membebani Anda.'
+    ]
+}
+
 // READ check radio button mana yang dipilih dan mengembalikan berupa value
 function getCheckedValue() {
     for (let i = 0; i < rad.length; i++) {
@@ -115,19 +143,22 @@ function submitButton() {
     // menentukan textResult berdasarkan total score
     let textResult = ''
     if (scoreTotal >= 21) {
-        textResult = 'Anda mengalami stress berat'
+        textResult = 'stress berat'
     } else if (scoreTotal >= 16) {
-        textResult = 'Anda mengalami stress cukup berat'
+        textResult = 'stress cukup berat'
     } else if (scoreTotal >= 12) {
-        textResult = 'Anda mengalami stress sedang'
+        textResult = 'stress sedang'
     } else if (scoreTotal >= 8) {
-        textResult = 'Anda mengalami stress ringan'
+        textResult = 'stress ringan'
     } else if (scoreTotal >= 0) {
-        textResult = 'Anda normal'
+        textResult = 'normal'
     }
 
+    let r = Math.ceil(Math.random() * 3) - 1
+    stressResult = feedbacks[textResult][r]
+
     // UPDATE hasil di localStorage
-    localStorage.setItem('stressResult', textResult);
+    localStorage.setItem('stressResult', stressResult);
     localStorage.setItem('scoreTotal', scoreTotal);
 
     // redirect ke submit.html
