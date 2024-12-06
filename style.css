@@ -11,17 +11,64 @@ body.input {
   background: #f16634; 
 }
 #submit-result {
-  font-size: 30px;
+  font-size: 25px;
 }
-table,
-tr,
-td {
-  border: 2px solid;
-  border-collapse: collapse;
+
+
+table {
+  width: 80%;
+  max-width: 600px;
+  border-collapse: collapse; /* Menghilangkan jarak antar border */
+  margin: 20px auto;
+  background-color: #fff; /* Latar belakang tabel */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Memberikan bayangan lembut */
+  border-radius: 8px; /* Membuat sudut tabel melengkung */
 }
-.classif {
-  border: 2px solid;
+
+/* Styling untuk header tabel */
+table th {
+  background-color: #007BFF; /* Warna latar belakang header */
+  color: white; /* Warna teks header */
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 1.1em;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
+
+/* Styling untuk sel data tabel */
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #f1f1f1; /* Garis pembatas antar baris */
+}
+
+/* Hover efek untuk baris tabel */
+table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Efek garis pembatas untuk baris terakhir */
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Styling untuk baris pertama (header) */
+table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+#div-submit {
+  background-color: white;
+  width: 50%;
+  border-radius: 20px;
+  text-align: center;
+  align-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+
 #score-result {
   font-weight: bold;
   font-size: 30px;
@@ -121,7 +168,7 @@ td {
 
 #login-btn,
 .func-btn {
-  margin-top: 3px;
+  margin-top: 6px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
@@ -174,5 +221,4 @@ td {
   height: 5pc;
 }
 
-.jawaban:hover {
-}
+

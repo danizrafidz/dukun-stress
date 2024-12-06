@@ -10,8 +10,11 @@
   <body>
     <div class="super-center-grid">
       <h1>EE Stress Tracker Result:</h1>
-      <p id="submit-result"></p>
       <p id="score-result"></p>
+      <div id="div-submit">
+        <p id="submit-result"></p>
+      </div>
+
       <table class="classif">
         <tr>
           <td>Total Score</td>
@@ -38,8 +41,15 @@
           <td>Stres berat</td>
         </tr>
       </table>
-    </div>
-
+      <button
+      type="button"
+      class="func-btn"
+      onclick="window.location.href='index.html'"
+      id="btn-prev"
+      >
+      Back to Home
+    </button>
+  </div>
     <script>
       // Ambil hasil dari localStorage
       const stressResult = localStorage.getItem("stressResult");
