@@ -1,12 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 body {
-  background-color: #f16634;
+  background-image: url("/img/stress.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center right;
   font-family: "Poppins", serif;
 }
+body.input {
+  background: #f16634; 
+}
+#submit-result {
+  font-size: 30px;
+}
+table,
+tr,
+td {
+  border: 2px solid;
+  border-collapse: collapse;
+}
+.classif {
+  border: 2px solid;
+}
+#score-result {
+  font-weight: bold;
+  font-size: 30px;
+}
 
-img {
-  width: 200px;
+#nama-user {
+  position: absolute;
+  right: 100px;
+  top: 350px;
+  font-weight: bold;
+  font-size: 50px;
 }
 
 .option {
@@ -28,7 +54,8 @@ img {
   gap: 10px; /* Jarak antara lingkaran dan teks */
   text-align: left;
 }
-.option:hover { background-color: chartreuse;
+.option:hover {
+  background-color: #224081;
 }
 .option input[type="radio"] {
   display: none;
@@ -48,7 +75,7 @@ img {
 }
 
 /* Tambahkan lingkaran di sebelah kiri teks */
-.option  label::before {
+.option label::before {
   content: "";
   position: absolute;
   left: 0;
@@ -68,9 +95,14 @@ img {
 }
 .super-center-grid {
   display: flex;
-  place-content: center;
-  min-height: 100vh;
   align-items: center;
+  margin-top: 130px;
+  flex-direction: column;
+}
+.center-grid {
+  display: flex;
+  align-items: center;
+  margin-top: 130px;
   flex-direction: column;
 }
 
@@ -87,12 +119,13 @@ img {
   font-family: "Poppins", serif;
 }
 
-#login-btn, .func-btn {
+#login-btn,
+.func-btn {
   margin-top: 3px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #007bff;
+  background-color: #224081;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -100,15 +133,16 @@ img {
   font-family: "Poppins", serif;
 }
 
-#login-btn:hover, .func-btn:hover  {
+#login-btn:hover,
+.func-btn:hover {
   background-color: #0056b3;
 }
 
 .quiz-card {
   background-color: white;
   border-radius: 20px;
+  box-shadow: 7px 7px #e7bc9a;
   width: 400px;
-  align-content: center;
   border: double white;
 }
 .anjing {
@@ -125,7 +159,7 @@ img {
   text-align: center;
   align-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 30px;
 }
 
 .jawaban {
@@ -141,8 +175,4 @@ img {
 }
 
 .jawaban:hover {
-}
-
-input:checked {
-  outline: 1px solid red !important
 }

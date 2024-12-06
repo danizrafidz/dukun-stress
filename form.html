@@ -1,54 +1,95 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>EE Stress Tracker Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <title>EE Stress Tracker Form</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <div class="container">
+      <!-- <img src="./img/stress.jpg" alt="" /> -->
+      <p id="nama-user"></p>
+      <div class="super-center-grid">
+        <form id="form-rad" class="quiz-card">
+          <p id="txt-pertanyaan" class="question">
+            1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang
+            tidak Anda harapkan?
+          </p>
+          <div class="option" for="rad1">
+            <input
+              class="jawaban"
+              type="radio"
+              id="rad1"
+              name="rad"
+              value="0"
+            />
+            <label class="custom-radio" for="rad1">Tidak pernah</label>
+          </div>
+          <div class="option">
+            <input
+              class="jawaban"
+              type="radio"
+              id="rad2"
+              name="rad"
+              value="1"
+            />
+            <label class="custom-radio" for="rad2">Hampir tidak pernah</label>
+          </div>
+          <div class="option">
+            <input
+              class="jawaban"
+              type="radio"
+              id="rad3"
+              name="rad"
+              value="2"
+            />
+            <label class="custom-radio" for="rad3">Kadang kadang</label>
+          </div>
+          <div class="option">
+            <input
+              class="jawaban"
+              type="radio"
+              id="rad4"
+              name="rad"
+              value="3"
+            />
+            <label class="custom-radio" for="rad4">Agak sering</label>
+          </div>
+          <div class="option">
+            <input
+              class="jawaban"
+              type="radio"
+              id="rad5"
+              name="rad"
+              value="4"
+            />
+            <label class="custom-radio" for="rad5">Sangat sering</label>
+          </div>
+          <p id="submit-output"></p>
+          <br />
 
-<body>
-  <p id="nama-user"></p>
-  <div class="super-center-grid">
-    <form id="form-rad" class="quiz-card">
-      <p id="txt-pertanyaan" class="question">
-        1. Seberapa sering Anda merasa kesal karena terjadi sesuatu yang tidak
-        Anda harapkan?
-      </p>
-      <div class="option" for="rad1">
-        <input class="jawaban" type="radio" id="rad1" name="rad" value="0" />
-        <label class="custom-radio" for="rad1">Tidak pernah</label>
+          <!-- <button type="button" onclick="submitButton()" id="btn-submit">submit</button> -->
+        </form>
+        <div class="buttons">
+          <button
+            type="button"
+            class="func-btn"
+            onclick="prevButton()"
+            id="btn-prev"
+          >
+            prev
+          </button>
+          <button
+            type="button"
+            class="func-btn"
+            onclick="nextButton()"
+            id="btn-next"
+          >
+            next
+          </button>
+        </div>
       </div>
-      <div class="option">
-        <input class="jawaban" type="radio" id="rad2" name="rad" value="1" />
-        <label class="custom-radio" for="rad2">Hampir tidak pernah</label>
-      </div>
-      <div class="option">
-        <input class="jawaban" type="radio" id="rad3" name="rad" value="2" />
-        <label class="custom-radio" for="rad3">Kadang kadang</label>
-      </div>
-      <div class="option">
-        <input class="jawaban" type="radio" id="rad4" name="rad" value="3" />
-        <label class="custom-radio" for="rad4">Agak sering</label>
-      </div>
-      <div class="option">
-        <input class="jawaban" type="radio" id="rad5" name="rad" value="4" />
-        <label class="custom-radio" for="rad5">Sangat sering</label>
-      </div>
-      <p id="submit-output"></p>
-      <br />
-
-      <!-- <button type="button" onclick="submitButton()" id="btn-submit">submit</button> -->
-    </form>
-    <div class="buttons">
-      <button type="button" class="func-btn" onclick="prevButton()" id="btn-prev">
-        prev
-      </button>
-      <button type="button" class="func-btn" onclick="nextButton()" id="btn-next">
-        next
-      </button>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>

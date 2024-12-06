@@ -1,15 +1,37 @@
+/**
+ * JS Basic:
+ * Primitive Data Type, Conditional (if & switch), Loop, Modular Functions, Array of Object
+ * 
+ * DOM:
+ * .getElementById(), .getElementsByClassName(), .getElementsByName()
+ * .createElement()
+ * .setAttribute()
+ * .remove()
+ * .append()
+ * .reset()
+ * .alert()
+ * .innerText
+ * window.location.href
+ * 
+ * localStorage (.getItem & .setItem)
+ * 
+ */
+
+// READ elements, 
 const textPertanyaan = document.getElementById("txt-pertanyaan")
 const form = document.getElementById("form-rad")
 const rad = document.getElementsByName("rad")
 const buttons = document.getElementsByClassName("buttons")[0]
-const submitOutput = document.getElementById("submit-output")
+const textInfo = document.getElementById("text-info")
+const prevBtn = document.getElementById("btn-prev")
 
 // READ hasil dari localStorage
 const namaUser = localStorage.getItem('namaUser');
-    
-// UPDATE hasil di <p> element dengan id 'nama-user'
-document.getElementById('nama-user').innerText = `Halo ${namaUser}!`|| 'Gagal';
 
+// UPDATE hasil di <p> element dengan id 'nama-user'
+document.getElementById('nama-user').innerText = `Halo ${namaUser}!` || 'Gagal';
+
+// DATABASE berupa Array of Object yang akan menyimpan semua data pertanyaan dan score
 let s = 0 // index untuk STORAGE
 let storage = [
     {
@@ -64,7 +86,7 @@ function getCheckedValue() {
     return null
 }
 
-// SAVE ke dalam storage berupa array of object
+// SAVE value score ke dalam storage berupa number
 function saveToStorage() {
     let checkedValue = getCheckedValue();
     storage[s].score = checkedValue
@@ -73,21 +95,24 @@ function saveToStorage() {
 function submitButton() {
     saveToStorage()
 
+    // KALKULASI total score
     let scoreTotal = 0
     for (let i = 0; i < storage.length; i++) {
         let perNum = storage[i].score
-        
+
+        // JIKA ada opsi yang belum dipilih
         if (perNum === null) {
-            return submitOutput.innerText = 'Isi semua pertanyaan!'
+            return textInfo.innerText = 'Isi semua pertanyaan!'
         }
 
+        // JIKA pertanyaan 4, 5, 7, 8. MAKA tukar nilai score-nya
         if (i == 3 || i == 4 || i == 6 || i == 7) {
             perNum = 4 - perNum
         }
-        
         scoreTotal += perNum
     }
 
+    // menentukan textResult berdasarkan total score
     let textResult = ''
     if (scoreTotal >= 21) {
         textResult = 'Anda mengalami stress berat'
@@ -101,14 +126,15 @@ function submitButton() {
         textResult = 'Anda normal'
     }
 
-    // // Simpan hasil di localStorage
+    // UPDATE hasil di localStorage
     localStorage.setItem('stressResult', textResult);
+    localStorage.setItem('scoreTotal', scoreTotal);
 
-    // Redirect ke submit.html
+    // redirect ke submit.html
     window.location.href = 'submit.html';
 }
 
-// READ radio mana yang ter-CHECKED pada pertanyaan sebelum, dilihat dari index storage []
+// READ dan UPDATE radio mana yang ter-CHECKED pada pertanyaan sebelum, dilihat dari index storage []
 function readCheckedRadio() {
     switch (storage[s].score) {
         case 0:
@@ -132,36 +158,43 @@ function readCheckedRadio() {
     }
 }
 
+/** BERLAKU UNTUK prevButton() & nextButton()
+ * SAVE [value] ke dalam [index] storage WITH function saveToStorage()
+ * UP / DOWN [index] storage
+ * READ [index] storage dan UPDATE checked radio WITH function readCheckedRadio()
+ */
+
+/** CONDITION:
+ * MIN index 0
+ * JIKA index 8, MAKA 
+ *      DELETE tombol submit
+ *      CREATE tombol next 
+ */
 function prevButton() {
     if (s <= 0) {
         return
     }
 
-    if (submitOutput.innerText !== '') {
-        submitOutput.innerText = ''
+    if (textInfo.innerText !== '') {
+        textInfo.innerText = ''
     }
 
-    let prevBtn = document.getElementById("btn-prev")
-
     saveToStorage()
-    console.log(storage);
+
     s--
     textPertanyaan.innerText = storage[s].pertanyaan
 
-    // JIKA kembali ke pertanyaan 9
     if (s === 8) {
-        // DELETE tombol submit
         let submitBtn = document.getElementById('btn-submit')
         submitBtn.remove()
 
-        // CREATE tombol next
         let nextBtn = document.createElement('button')
         nextBtn.setAttribute('type', 'button')
         nextBtn.setAttribute('class', 'func-btn')
         nextBtn.setAttribute('onclick', 'nextButton()')
         nextBtn.setAttribute('id', 'btn-next')
         nextBtn.innerText = 'next'
-        // PREVIEW created html: <button type="button" onclick="nextButton()" id="btn-next">next</button>
+        // PREVIEW created html: <button type="button" class="func-btn" onclick="nextButton()" id="btn-next">next</button>
 
         buttons.append(nextBtn)
     }
@@ -169,30 +202,33 @@ function prevButton() {
     readCheckedRadio()
 }
 
+/**CONDITION:
+ * MAX index 9
+ * JIKA index 9, MAKA 
+ *      DELETE tombol next
+ *      CREATE tombol submit 
+ */
 function nextButton() {
     if (s >= 9) {
         return
     }
 
     saveToStorage()
-    console.log(storage);
+
     s++
     textPertanyaan.innerText = storage[s].pertanyaan
 
-    // JIKA menuju ke pertanyaan 10
     if (s === 9) {
-        // DELETE tombol next
         let nextBtn = document.getElementById("btn-next")
         nextBtn.remove()
 
-        // CREATE tombol submit
         let submitBtn = document.createElement('button')
         submitBtn.setAttribute('type', 'button')
         submitBtn.setAttribute('class', 'func-btn')
         submitBtn.setAttribute('onclick', 'submitButton()')
         submitBtn.setAttribute('id', 'btn-submit')
         submitBtn.innerText = 'submit'
-        // PREVIEW created html: <button type="button" onclick="submitButton()" id="btn-submit">submit</button>
+        // PREVIEW created html: <button type="button" class="func-btn" onclick="submitButton()" id="btn-submit">submit</button>
 
         buttons.append(submitBtn)
     }

@@ -6,10 +6,11 @@
     <title>EE Stress Tracker Input Nama</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+
+  <body class="input">
     <div class="super-center-grid">
       <img src="img/hacktiv8.webp" alt="" />
-      <h1>Welcome !</h1>
+      <h1>Welcome to EE Stress Tracker!</h1>
       <div class="ini">
         <form class="anjing">
           <input
@@ -17,17 +18,28 @@
             type="text"
             placeholder="Input your name..."
           />
-          <input id="login-btn" type="button" value="Masuk" onclick="saveName()"/>
+          <input
+            id="login-btn"
+            type="button"
+            value="Masuk"
+            onclick="saveName()"
+          />
           <a href="soal.html"></a>
         </form>
       </div>
     </div>
     <script>
       function saveName() {
-        let styledInput = document.getElementById("styled-input")
-        
-        localStorage.setItem('namaUser', styledInput.value);
-        window.location.href = 'form.html';
+        // READ data nama dari input menggunakan getElementById
+        let nama = document.getElementById("styled-input").value;
+        if (nama.length === 0) {
+          alert("Nama tidak boleh kosong");
+        } else if (!isNaN(nama)) {
+          alert("Nama tidak boleh angka");
+        } else {
+          localStorage.setItem("namaUser", nama);
+          window.location.href = "form.html";
+        }
       }
     </script>
   </body>
