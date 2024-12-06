@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EE Stress Tracker Input Nama</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EE Stress Tracker Input Nama</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <div class="super-center-grid">
-    <img src="img/hacktiv8.webp" alt="" />
-    <h1>Welcome to EE Stress Tracker!</h1>
-    <div class="ini">
-      <form class="anjing">
-        <input id="styled-input" type="text" placeholder="Input your name..." />
-        <input id="login-btn" type="button" value="Masuk" onclick="saveName()" />
-        <a href="soal.html"></a>
-      </form>
+  <body class="input">
+    <div class="super-center-grid">
+      <img src="img/hacktiv8.webp" alt="" />
+      <h1>Welcome to EE Stress Tracker!</h1>
+      <div class="ini">
+        <form class="anjing">
+          <input
+            id="styled-input"
+            type="text"
+            placeholder="Input your name..."
+          />
+          <input
+            id="login-btn"
+            type="button"
+            value="Masuk"
+            onclick="saveName()"
+          />
+          <a href="soal.html"></a>
+        </form>
+      </div>
     </div>
-  </div>
-  <script>
-    function saveName() {
-      // READ data nama dari input menggunakan getElementById
-      let nama = document.getElementById('styled-input').value;
-      if (nama.length === 0) {
-        alert('Nama tidak boleh kosong');
-      } else if (!isNaN(nama)) {
-        alert('Nama tidak boleh angka');
-      } else {
-        localStorage.setItem('namaUser', nama);
-        window.location.href = 'form.html';
+    <script>
+      function saveName() {
+        // READ data nama dari input menggunakan getElementById
+        let nama = document.getElementById("styled-input").value;
+        if (nama.length === 0) {
+          alert("Nama tidak boleh kosong");
+        } else if (!isNaN(nama)) {
+          alert("Nama tidak boleh angka");
+        } else {
+          localStorage.setItem("namaUser", nama);
+          window.location.href = "form.html";
+        }
       }
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

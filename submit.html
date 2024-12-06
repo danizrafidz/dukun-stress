@@ -1,58 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EE Stress Tracker Submit</title>
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-    <div>
-        <h1>EE Stress Tracker Result:</h1>
+  <body>
+    <div class="super-center-grid">
+      <h1>EE Stress Tracker Result:</h1>
+      <p id="score-result"></p>
+      <div id="div-submit">
         <p id="submit-result"></p>
-        <p id="score-result"></p>
-        <table class="classif">
-            <tr>
-                <td>Total Score</td>
-                <td>Keterangan</td>
-            </tr>
-            <tr>
-                <td>0 - 7</td>
-                <td>Normal</td>
-            </tr>
-            <tr>
-                <td>8 - 11</td>
-                <td>Stres ringan</td>
-            </tr>
-            <tr>
-                <td>12 - 15</td>
-                <td>Stres sedang</td>
-            </tr>
-            <tr>
-                <td>16 - 20</td>
-                <td>Stres cukup berat</td>
-            </tr>
-            <tr>
-                <td>Lebih dari 21</td>
-                <td>Stres berat</td>
-            </tr>
-        </table>
-    </div>
+      </div>
 
+      <table class="classif">
+        <tr>
+          <td>Total Score</td>
+          <td>Keterangan</td>
+        </tr>
+        <tr>
+          <td>0 - 7</td>
+          <td>Normal</td>
+        </tr>
+        <tr>
+          <td>8 - 11</td>
+          <td>Stres ringan</td>
+        </tr>
+        <tr>
+          <td>12 - 15</td>
+          <td>Stres sedang</td>
+        </tr>
+        <tr>
+          <td>16 - 20</td>
+          <td>Stres cukup berat</td>
+        </tr>
+        <tr>
+          <td>Lebih dari 21</td>
+          <td>Stres berat</td>
+        </tr>
+      </table>
+      <button
+      type="button"
+      class="func-btn"
+      onclick="window.location.href='index.html'"
+      id="btn-prev"
+      >
+      Back to Home
+    </button>
+  </div>
     <script>
-        // Ambil hasil dari localStorage
-        const stressResult = localStorage.getItem('stressResult');
-        const namaUser = localStorage.getItem('namaUser');
-        const scoreTotal = localStorage.getItem('scoreTotal');
+      // Ambil hasil dari localStorage
+      const stressResult = localStorage.getItem("stressResult");
+      const namaUser = localStorage.getItem("namaUser");
+      const scoreTotal = localStorage.getItem('scoreTotal');
 
-        // Tampilkan hasil di <p> element
-        document.getElementById('submit-result').innerText = `Halo ${namaUser}! ${stressResult}` || 'Gagal';
+      // Tampilkan hasil di <p> element
+      document.getElementById("submit-result").innerText =
+        `Halo ${namaUser}! ${stressResult}` || "Gagal";
         document.getElementById('score-result').innerText = `Total Score Stress: ${scoreTotal}`
-
-        
+    </script>
     </script>
     <!-- <script src="script.js"></script> -->
-</body>
-
+  </body>
 </html>

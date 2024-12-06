@@ -24,6 +24,7 @@ const rad = document.getElementsByName("rad")
 const buttons = document.getElementsByClassName("buttons")[0]
 const textInfo = document.getElementById("text-info")
 const prevBtn = document.getElementById("btn-prev")
+prevBtn.style.display = "none"
 
 // READ hasil dari localStorage
 const namaUser = localStorage.getItem('namaUser');
@@ -130,7 +131,7 @@ function submitButton() {
 
         // JIKA ada opsi yang belum dipilih
         if (perNum === null) {
-            return textInfo.innerText = 'Isi semua pertanyaan!'
+            return textInfo.innerText = 'Anda belum menjawab semua pertanyaan!'
         }
 
         // JIKA pertanyaan 4, 5, 7, 8. MAKA tukar nilai score-nya
@@ -202,12 +203,16 @@ function readCheckedRadio() {
  *      CREATE tombol next 
  */
 function prevButton() {
+    if (s === 1) {
+        prevBtn.style.display = "none"
+    }
+
     if (s <= 0) {
         return
     }
 
-    if (textInfo.innerText !== '') {
-        textInfo.innerText = ''
+    if (textInfo.innerText !== null) {
+        textInfo.innerText = null
     }
 
     saveToStorage()
@@ -240,6 +245,10 @@ function prevButton() {
  *      CREATE tombol submit 
  */
 function nextButton() {
+    if (s === 0) {
+        prevBtn.removeAttribute("style")
+    }
+
     if (s >= 9) {
         return
     }
